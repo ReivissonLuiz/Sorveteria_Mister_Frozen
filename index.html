@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorveteria Mister Frozen</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Resetando algumas propriedades e organizando o layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeb3b; /* Amarelo vibrante */
+            color: #333;
+        }
+        header {
+            background-color: #ff5722; /* Laranja vibrante */
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #e64a19; /* Tom mais escuro de laranja */
+        }
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+        }
+        .cta-button {
+            background-color: #4caf50; /* Verde vibrante */
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #388e3c; /* Verde mais escuro no hover */
+        }
+        .content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #ffffff; /* Branco para os cartões de produtos */
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #ff5722; /* Cor laranja vibrante */
+        }
+        p {
+            font-size: 1.1em;
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+        .product {
+            background-color: #fce4ec; /* Rosa claro para os produtos */
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .product:hover {
+            transform: translateY(-10px);
+        }
+        .product img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .product h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #e64a19; /* Cor laranja mais forte para o título */
+        }
+        .product p {
+            font-size: 1em;
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff5722; /* Laranja vibrante no rodapé */
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">🍦 Sorveteria Mister Frozen</div>
+        <a href="pedido.html" class="cta-button">Peça Agora</a>
+    </header>
+
+    <div class="content">
+        <h2>Bem-vindo à Sorveteria Mister Frozen!</h2>
+        <p>Na Mister Frozen, oferecemos uma deliciosa experiência com opções que atendem a todos os gostos. Trabalhamos com os melhores produtos e com atendimento personalizado para que você tenha um momento único. Confira o que temos para você:</p>
+        
+        <div class="products">
+            <!-- Buffet de Massas -->
+            <div class="product">
+                <img src="./img/buffet-massas.png" alt="Buffet de Massas">
+                <h3>Buffet de Massas Kaskin</h3>
+                <p>Oferecemos um delicioso buffet de massas da marca Kaskin, com diversas opções para você montar sua refeição do jeito que mais gosta.</p>
+            </div>
+
+            <!-- Picolés Gebon -->
+            <div class="product">
+                <img src="./img/picoles-gebon.png" alt="Picolés Gebon">
+                <h3>Picolés Gebon</h3>
+                <p>Experimente os melhores picolés da marca Gebon, com sabores refrescantes e deliciosos para todos os gostos.</p>
+            </div>
+
+            <!-- Picolés La Tasci -->
+            <div class="product">
+                <img src="./img/picoles-latasci.png" alt="Picolés La Tasci">
+                <h3>Picolés La Tasci</h3>
+                <p>Refresque-se com os picolés da La Tasci, com sabores incríveis e cremosidade que vão te conquistar!</p>
+            </div>
+
+            <!-- Potê de Sorvete La Tasci -->
+            <div class="product">
+                <img src="./img/potes-latasci.png" alt="Pote de Sorvete La Tasci">
+                <h3>Pote de Sorvete La Tasci</h3>
+                <p>Delicie-se com os potes de sorvete da La Tasci, com uma variedade de sabores incríveis que são perfeitos para qualquer hora do dia.</p>
+            </div>
+
+            <!-- Máquina de Italianinha -->
+            <div class="product">
+                <img src="./img/italianinha.png" alt="Máquina de Italianinha">
+                <h3>Máquina de Italianinha</h3>
+                <p>Temos uma incrível máquina de Italianinha, com o melhor e mais cremoso sorvete expresso da região.</p>
+            </div>
+
+            <!-- Copos de Açaí -->
+            <div class="product">
+                <img src="./img/copo-acai.png" alt="Copos de Açaí">
+                <h3>Copo de Açaí ao gosto do cliente</h3>
+                <p>Montamos seu copo de Açaí do jeito que preferir, com diversos complementos, criando uma experiência única e personalizada!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Sorveteria Mister Frozen. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>

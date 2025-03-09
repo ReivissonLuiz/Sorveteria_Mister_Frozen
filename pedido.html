@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardápio - Açaí</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #FFEB3B; /* Fundo amarelo vibrante */
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #F57C00; /* Laranja vibrante */
+            margin-bottom: 30px;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: auto;
+            transition: 0.3s ease;
+        }
+        label {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 10px;
+            color: #FF5722; /* Vermelho suave */
+            display: block;
+        }
+        select, input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+        .complementos-container {
+            margin-top: 20px;
+        }
+        .complementos-container label {
+            font-size: 1.4em;
+            color: #F57C00; /* Laranja */
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        .complementos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px; /* Reduzido o espaço entre os complementos */
+            text-align: left;
+            justify-items: flex-start;
+        }
+        .complementos label {
+            font-size: 1em;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .complementos input {
+            width: auto;
+            margin-right: 10px;
+        }
+        button {
+            background: #FF5722; /* Vermelho */
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            margin-top: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.3s;
+            width: auto; /* Largura ajustada automaticamente */
+            display: inline-block;
+        }
+        button:hover {
+            background: #E64A19; /* Laranja forte para o hover */
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px;
+                margin: 15px;
+                max-width: 90%;
+            }
+            .complementos-container label {
+                font-size: 1.2em;
+            }
+            .complementos {
+                grid-template-columns: 1fr;
+            }
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            .container {
+                padding: 15px;
+                margin: 10px;
+            }
+            button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Estilo do botão voltar */
+        .voltar-btn {
+            background: #4CAF50; /* Cor verde */
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: 0.3s;
+            width: auto; /* Largura ajustada automaticamente */
+            display: inline-block; /* Garante o alinhamento adequado */
+        }
+        .voltar-btn:hover {
+            background: #45a049; /* Verde mais escuro para o hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Monte seu Açaí</h1>
+    <div class="container">
+        <label for="quantidade">Quantos copos deseja?</label>
+        <input type="number" id="quantidade" min="1" max="10" value="1" onchange="gerarCamposTamanho()">
+
+        <div id="tamanhos-area"></div>
+        <div id="complementos-area"></div>
+        
+        <button onclick="finalizarPedido()">Enviar Pedido no WhatsApp</button>
+    </div>
+
+    <!-- Botão para voltar para a página inicial -->
+    <a href="index.html">
+        <button class="voltar-btn">
+            Voltar para a Página Inicial
+        </button>
+    </a>
+
+    <script>
+        const complementosLista = [
+            "Amendoim", "Leite Ninho", "Tubetes", "Chocoboll", "Leite Condensado",
+            "Gotas de Chocolate", "Banana", "Morango", "Kiwi", "Confete",
+            "Granola", "Granulado", "Paçoca"
+        ];
+
+        function gerarCamposTamanho() {
+            const quantidade = document.getElementById('quantidade').value;
+            const area = document.getElementById('tamanhos-area');
+            area.innerHTML = '';
+            
+            for (let i = 1; i <= quantidade; i++) {
+                let div = document.createElement('div');
+                div.innerHTML = `<label for="tamanho${i}">Escolha o tamanho do copo ${i}:</label>
+                <select id="tamanho${i}">
+                    <option value="pequeno">Pequeno (300ml)</option>
+                    <option value="medio">Médio (500ml)</option>
+                    <option value="grande">Grande (700ml)</option>
+                </select>`;
+                area.appendChild(div);
+            }
+            gerarCamposComplementos();
+        }
+
+        function gerarCamposComplementos() {
+            const quantidade = document.getElementById('quantidade').value;
+            const area = document.getElementById('complementos-area');
+            area.innerHTML = '';
+            
+            for (let i = 1; i <= quantidade; i++) {
+                let div = document.createElement('div');
+                div.classList.add('complementos-container');
+                div.innerHTML = `<label>Escolha até 3 complementos para o copo ${i}:</label>`;
+                
+                let divComplementos = document.createElement('div');
+                divComplementos.classList.add('complementos');
+                
+                complementosLista.forEach(complemento => {
+                    let label = document.createElement('label');
+                    label.innerHTML = `<input type="checkbox" name="complemento${i}" value="${complemento}" onclick="limitarComplementos(${i})"> ${complemento}`;
+                    divComplementos.appendChild(label);
+                });
+                
+                div.appendChild(divComplementos);
+                area.appendChild(div);
+            }
+        }
+
+        function limitarComplementos(numeroCopo) {
+            let selecionados = document.querySelectorAll(`input[name=complemento${numeroCopo}]:checked`);
+            if (selecionados.length > 3) {
+                alert('Escolha no máximo 3 complementos por copo!');
+                selecionados[selecionados.length - 1].checked = false;
+            }
+        }
+
+        function finalizarPedido() {
+            let quantidade = document.getElementById('quantidade').value;
+            let pedido = `Olá! Quero pedir ${quantidade} copo(s) de Açaí.\n\n`;
+            
+            for (let i = 1; i <= quantidade; i++) {
+                let tamanho = document.getElementById(`tamanho${i}`).value;
+                let complementos = Array.from(document.querySelectorAll(`input[name=complemento${i}]:checked`))
+                    .map(c => c.value).join(', ');
+                
+                pedido += `Copo ${i} (${tamanho}): ${complementos || 'Sem complementos'}\n`;
+            }
+            
+            let telefone = "5541998208305";
+            let url = `https://wa.me/${telefone}?text=${encodeURIComponent(pedido)}`;
+            
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
